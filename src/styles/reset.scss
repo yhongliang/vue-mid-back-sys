@@ -1,0 +1,29 @@
+/* 基于 modern-normalize 或自定义重置 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    line-height: 1.5;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    min-height: 100vh;
+    font-family: system-ui, sans-serif;
+}
+
+/* 移除列表默认样式 */
+ul,
+ol {
+    list-style: none;
+}
+
+/* 图片自适应 */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
