@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # strongProject
 
 This template should help get you started developing with Vue 3 in Vite.
@@ -62,3 +63,6 @@ npm run lint
 
 ```当前项目的目录结构```
 
+=======
+# vue-mid-back-sys
+>>>>>>> d362d55d3997a88f6a3b1b399286054125f1866f
