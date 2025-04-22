@@ -6,7 +6,7 @@ const router = createRouter({
   routes: [
     // 配置首先进入登录页面
     {
-      path: '/:pathMatch(.*)*',
+      path: '/',
       redirect: '/login',
     },
     {
@@ -14,11 +14,11 @@ const router = createRouter({
       name: 'login',
       component: () => import('@/views/auth/LoginForm.vue'),
     },
-    {
-      path: '/',
-      name: 'home',
-      component: HomeView,
-    },
+    // {
+    //   path: '/home',
+    //   name: 'home',
+    //   component: HomeView,
+    // },
   ],
 })
 

@@ -28,7 +28,11 @@ export default defineConfig({
   css: {
     preprocessorOptions: {
       scss: {
-        additionalData: `@use "@/styles/variables.scss" as vars;`, // 全局SCSS变量文件
+        additionalData: `
+          @use "sass:map";
+          @use "sass:color";
+          @use "@/styles/variables.scss" as *;
+        `,
       },
     },
   },

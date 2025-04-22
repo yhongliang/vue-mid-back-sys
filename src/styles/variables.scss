@@ -1,7 +1,16 @@
-/* 覆盖Element Plus变量 */
-@forward "element-plus/theme-chalk/src/common/var.scss" with ($colors: ('primary': ('base': #3366ff,
-        ),
-    ));
+@use "sass:map";
+@use "sass:color";
 
-/* 必须引入基础样式 */
-@use "element-plus/theme-chalk/src/index.scss" as *;
+// 1. 首先覆盖Element变量
+@forward 'element-plus/theme-chalk/src/common/var.scss' with ($colors: ('primary': ('base': #409eff,
+            'light-9': color.mix(#fff, #409eff, 90%))));
+
+// 2. 导出易用变量（避免组件中频繁使用map.get）
+// $--color-primary-light-9: map.get(map.get($colors, 'primary'), 'light-9') !default;
+$box-shadow-dark: 0 6px 18px rgba(0, 0, 0, 0.12) !default;
+// 2. 然后声明自定义变量
+$box-shadow-dark: 0 6px 18px rgba(0, 0, 0, 0.12) !default;
+$--color-primary: #409EFF !default;
+$--color-white: #FFFFFF !default;
+$--color-text-primary: #303133 !default;
+$--border-radius-base: 4px !default;
