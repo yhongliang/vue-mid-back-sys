@@ -8,8 +8,9 @@ import router from './router'
 
 import ElementPlus from 'element-plus'
 import zhCn from 'element-plus/es/locale/lang/zh-cn'
-import 'dayjs/locale/zh-cn'
+// import 'dayjs/locale/zh-cn'
 import '@/styles/reset.scss'
+import 'element-plus/dist/index.css'
 
 const app = createApp(App)
 

@@ -1,145 +1,191 @@
 <template>
     <div class="login-container">
-        <!-- 动态背景 -->
-        <div class="animated-bg"></div>
-
-        <!-- 登录卡片 -->
-        <div class="login-card">
-            <h2 class="title">Welcome Back</h2>
-
-            <form @submit.prevent="handleSubmit">
-                <!-- 用户名输入 -->
-                <div class="input-group">
-                    <input v-model="form.username" type="text" required @focus="handleInputFocus"
-                        @blur="handleInputBlur">
-                    <label :class="{ active: isUsernameActive }">Username</label>
-                </div>
-
-                <!-- 密码输入 -->
-                <div class="input-group">
-                    <input v-model="form.password" type="password" required @focus="handleInputFocus"
-                        @blur="handleInputBlur">
-                    <label :class="{ active: isPasswordActive }">Password</label>
-                </div>
-
-                <!-- 提交按钮 -->
-                <button type="submit" class="submit-btn" :disabled="loading">
-                    <span v-if="!loading">Sign In</span>
-                    <div v-else class="loading-dots">
-                        <div class="dot"></div>
-                        <div class="dot"></div>
-                        <div class="dot"></div>
-                    </div>
-                </button>
-            </form>
-        </div>
+      <!-- 动态背景 -->
+      <div class="animated-bg"></div>
+  
+      <!-- 登录卡片 -->
+      <el-card class="login-card">
+        <h2 class="title">欢迎回来</h2>
+  
+        <el-form 
+          ref="loginForm"
+          :model="form" 
+          :rules="rules"
+          
+        >
+          <!-- 用户名输入 -->
+          <el-form-item prop="username">
+            <el-input
+              v-model="form.username"
+              placeholder=" "
+              @focus="isUsernameActive = true"
+              @blur="isUsernameActive = !!form.username"
+            />
+            <label :class="{ active: isUsernameActive }">用户名</label>
+          </el-form-item>
+  
+          <!-- 密码输入 -->
+          <el-form-item prop="password">
+            <el-input
+              v-model="form.password"
+              type="password"
+              placeholder=" "
+              show-password
+              @focus="isPasswordActive = true"
+              @blur="isPasswordActive = !!form.password"
+            />
+            <label :class="{ active: isPasswordActive }">密码</label>
+          </el-form-item>
+  
+          <!-- 按钮组 -->
+          <el-form-item class="button-group">
+            <el-button
+              type="primary"
+              native-type="submit"
+              class="submit-btn"
+              :loading="loading"
+              @click.prevent="handleSubmit"
+            >
+              登录
+            </el-button>
+            <el-button
+              class="register-btn"
+              @click="handleRegister"
+            >
+              注册
+            </el-button>
+          </el-form-item>
+        </el-form>
+      </el-card>
     </div>
-</template>
-
-<script setup>
-import { ref, reactive } from 'vue'
-
-// 响应式数据
-const form = reactive({
+  </template>
+  
+  <script lang="ts" setup>
+  import { ref, reactive } from 'vue'
+  import type { FormInstance, FormRules } from 'element-plus'
+  
+  // 表单引用
+  const loginForm = ref<FormInstance>()
+  
+  // 响应式数据
+  const form = reactive({
     username: '',
     password: ''
-})
-
-const loading = ref(false)
-const isUsernameActive = ref(false)
-const isPasswordActive = ref(false)
-
-// 输入框交互处理
-const handleInputFocus = (e) => {
-    if (e.target.type === 'text') isUsernameActive.value = true
-    if (e.target.type === 'password') isPasswordActive.value = true
-}
-
-const handleInputBlur = (e) => {
-    if (!e.target.value) {
-        isUsernameActive.value = false
-        isPasswordActive.value = false
+  })
+  
+  // 表单验证规则
+  const rules = reactive<FormRules>({
+    username: [
+      { required: true, message: '请输入用户名', trigger: 'blur' },
+      { min: 4, max: 16, message: '长度在4到16之间', trigger: 'blur' }
+    ],
+    password: [
+      { required: true, message: '请输入密码', trigger: 'blur' },
+      { min: 6, max: 20, message: '长度在6到20之间', trigger: 'blur' }
+    ]
+  })
+  
+  const loading = ref(false)
+  const isUsernameActive = ref(false)
+  const isPasswordActive = ref(false)
+  
+  // 提交处理
+  const handleSubmit = async () => {
+    // 表单验证
+    try {
+      await loginForm.value?.validate()
+    } catch (error) {
+      return error;
     }
-}
-
-// 提交处理
-const handleSubmit = async () => {
+  
     loading.value = true
     try {
-        // 这里添加API请求
-        await new Promise(resolve => setTimeout(resolve, 1500))
-        console.log('登录数据:', form)
+      // 这里添加API请求
+      await new Promise(resolve => setTimeout(resolve, 1500))
+      console.log('登录数据:', form)
+      // 模拟登录成功
+      ElMessage.success('Login successful!')
+    } catch (error) {
+      ElMessage.error('Login failed!', error)
     } finally {
-        loading.value = false
+      loading.value = false
     }
-}
-</script>
-
-<style scoped>
-/* 容器布局 */
-.login-container {
+  }
+  
+  // 注册处理
+  const handleRegister = () => {
+    ElMessage.info('Redirect to register page')
+    // 这里可以添加跳转注册页面的逻辑
+    // router.push('/register')
+  }
+  </script>
+  
+  <style lang="scss" scoped>
+  /* 容器布局 */
+  .login-container {
     min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
     overflow: hidden;
-}
-
-/* 动态背景 */
-.animated-bg {
+  }
+  
+  /* 动态背景 */
+  .animated-bg {
     position: absolute;
     width: 200%;
     height: 200%;
-    background: linear-gradient(45deg,
-            #ee7752,
-            #e73c7e,
-            #23a6d5,
-            #23d5ab);
+    background: linear-gradient(
+      45deg,
+      #ee7752,
+      #e73c7e,
+      #23a6d5,
+      #23d5ab
+    );
     background-size: 400% 400%;
     animation: gradientBG 15s ease infinite;
     filter: blur(30px);
     opacity: 0.7;
-}
-
-/* 登录卡片 */
-.login-card {
+  }
+  
+  /* 登录卡片 */
+  .login-card {
     position: relative;
     width: 400px;
     padding: 40px;
-    background: rgba(255, 255, 255, 0.95);
     border-radius: 20px;
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
     z-index: 1;
-}
-
-.title {
+  
+    :deep(.el-card__body) {
+      padding: 0;
+    }
+  }
+  
+  .title {
     text-align: center;
     margin-bottom: 40px;
     color: #2c3e50;
-}
-
-/* 输入框样式 */
-.input-group {
+  }
+  
+  /* 输入框样式 */
+  .el-form-item {
     position: relative;
     margin-bottom: 30px;
-}
-
-input {
-    width: 100%;
-    padding: 15px;
-    border: 2px solid #eee;
+  }
+  
+  :deep(.el-input__wrapper) {
+    padding: 10px;
     border-radius: 8px;
-    font-size: 16px;
     transition: all 0.3s ease;
-}
-
-input:focus {
-    border-color: #3498db;
-    outline: none;
-}
-
-label {
+    
+    &.is-focus {
+      box-shadow: 0 0 0 1px #3498db inset;
+    }
+  }
+  
+  label {
     position: absolute;
     left: 15px;
     top: 50%;
@@ -147,83 +193,71 @@ label {
     color: #999;
     pointer-events: none;
     transition: all 0.3s ease;
-}
-
-label.active {
-    top: -10px;
-    left: 5px;
-    font-size: 12px;
-    color: #3498db;
-    background: white;
+    z-index: 2;
+    background: transparent;
     padding: 0 5px;
-}
-
-/* 提交按钮 */
-.submit-btn {
-    width: 100%;
-    padding: 15px;
-    background: #3498db;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.submit-btn:hover {
-    background: #2980b9;
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
-}
-
-/* 加载动画 */
-.loading-dots {
+    margin-left: 8px;
+    
+    &.active {
+      top: 0;
+      left: 5px;
+      font-size: 12px;
+      color: #3498db;
+      background: white;
+    }
+  }
+  
+  /* 按钮组样式 */
+  .button-group {
     display: flex;
-    justify-content: center;
-    gap: 8px;
-}
-
-.dot {
-    width: 8px;
-    height: 8px;
-    background: white;
-    border-radius: 50%;
-    animation: dotBounce 1.4s infinite;
-}
-
-.dot:nth-child(2) {
-    animation-delay: 0.2s
-}
-
-.dot:nth-child(3) {
-    animation-delay: 0.4s
-}
-
-@keyframes gradientBG {
+    justify-content: space-between;
+    margin-top: 20px;
+    
+    .el-form-item__content {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+    }
+  }
+  
+  /* 登录按钮 */
+  .submit-btn {
+    flex: 1;
+    padding: 20px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    margin-right: 10px;
+    
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+    }
+  }
+  
+  /* 注册按钮 */
+  .register-btn {
+    flex: 1;
+    padding: 20px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    margin-left: 10px;
+    
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(108, 117, 125, 0.4);
+    }
+  }
+  
+  /* 动画 */
+  @keyframes gradientBG {
     0% {
-        background-position: 0% 50%
+      background-position: 0% 50%;
     }
-
     50% {
-        background-position: 100% 50%
+      background-position: 100% 50%;
     }
-
     100% {
-        background-position: 0% 50%
+      background-position: 0% 50%;
     }
-}
-
-@keyframes dotBounce {
-
-    0%,
-    80%,
-    100% {
-        transform: translateY(0)
-    }
-
-    40% {
-        transform: translateY(-10px)
-    }
-}
-</style>
+  }
+  </style>
