@@ -1,0 +1,17 @@
+<template>
+    <div>
+        <el-menu router :default-active="$route.path" :collapse="isCollapse">
+            <sidebar-item v-for="route in permissionStore.routes" :key="route.path" :item="route" />
+        </el-menu>
+    </div>
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue'
+import { usePermissionStore } from '@/store/permission'
+import SidebarItem from './Sidebaritem.vue' // 递归组件
+const permissionStore = usePermissionStore()
+const isCollapse = ref<boolean>(false)
+</script>
+
+<style scoped></style>
