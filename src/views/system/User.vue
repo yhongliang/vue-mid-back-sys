@@ -1,6 +1,6 @@
 <template>
     <div>
-
+        用户管理界面待开发
     </div>
 </template>
 
@@ -8,4 +8,4 @@
 
 </script>
 
-<style lang="scss" scoped></style>
+<style scoped></style>

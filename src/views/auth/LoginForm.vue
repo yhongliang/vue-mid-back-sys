@@ -84,9 +84,8 @@ const handleSubmit = async () => {
     loading.value = true
     try {
         // 这里添加API请求
-        await new Promise(resolve => setTimeout(resolve, 1500))
-        console.log('登录数据:', form)
-        router.push('/dashboard') // 登录成功后跳转到首页
+        // await new Promise(resolve => setTimeout(resolve, 1500))
+        router.push('/system/User') // 登录成功后跳转到首页
         // 模拟登录成功
         ElMessage.success('Login successful!')
     } catch (error) {
