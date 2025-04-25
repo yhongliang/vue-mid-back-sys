@@ -34,7 +34,7 @@ const router = createRouter({
         {
           path: 'system/User',
           component: () => import('@/views/system/User.vue'),
-          meta: { title: '用户管理', icon: 'user' }
+          meta: { title: '用户管理', icon: 'User' }
         },
         {
           path: 'system/Role',
@@ -44,7 +44,7 @@ const router = createRouter({
         {
           path: 'system/Menu',
           component: () => import('@/views/system/Menu.vue'),
-          meta: { title: '菜单管理', icon: 'menu' }
+          meta: { title: '菜单管理', icon: 'Menu' }
         }
         // 其他动态路由会自动注入到这里
       ]
