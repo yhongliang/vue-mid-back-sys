@@ -61,6 +61,7 @@ defineProps({
             font-size: 14px;
             line-height: 50px;
             font-family: Avenir, Helvetica Neue, Arial, Helvetica, sans-serif;
+            text-decoration: none;
         }
     }
 }
