@@ -41,6 +41,7 @@ defineProps({
     height: 50px;
     line-height: 50px;
     text-align: center;
+    background: #334154;
     overflow: hidden;
 
     .sidebar-logo-link {
@@ -60,6 +61,7 @@ defineProps({
             font-weight: 600;
             font-size: 14px;
             line-height: 50px;
+            color: #ffffff;
             font-family: Avenir, Helvetica Neue, Arial, Helvetica, sans-serif;
             text-decoration: none;
         }

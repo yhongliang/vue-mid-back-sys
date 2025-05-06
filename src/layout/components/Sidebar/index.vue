@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="sidebar-container">
         <Logo :collapse="isCollapse"></Logo>
         <el-scrollbar>
             <el-menu router :default-active="$route.path" :collapse="isCollapse">
@@ -18,4 +18,40 @@ const permissionStore = usePermissionStore()
 const isCollapse = ref<boolean>(false)
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.sidebar-container {
+    // background: #334154;
+
+    :deep(.el-menu) {
+        background-color: #334154;
+        height: calc(100vh - 50px);
+        border: none;
+        width: 100%;
+        overflow: hidden;
+
+        .el-menu-item,
+        .el-sub-menu__title {
+            color: #BFCBD9;
+            font-size: 14px;
+
+            &:hover {
+                background-color: #041527;
+            }
+        }
+
+        .el-menu-item {
+            background-color: #1F2D3D;
+
+            &.is-active {
+                color: #409eff;
+                background-color: #041527;
+            }
+        }
+
+        .el-sub-menu__title {
+            background-color: #304151;
+        }
+
+    }
+}
+</style>

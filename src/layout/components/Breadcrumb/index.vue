@@ -1,6 +1,6 @@
 <template>
     <div>
-        <el-breadcrumb separator="/">
+        <el-breadcrumb class="app-breadcrumb" separator="/">
             <el-breadcrumb-item v-for="(item, index) in breadcrumbs" :key="index" :to="item.path">
                 {{ item.meta.title }}
             </el-breadcrumb-item>
@@ -18,4 +18,16 @@ const breadcrumbs = computed(() => {
 })
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.app-breadcrumb.el-breadcrumb {
+    display: inline-block;
+    font-size: 14px;
+    line-height: 50px;
+    margin-left: 8px;
+
+    // .no-redirect {
+    //     color: #97a8be;
+    //     cursor: text;
+    // }
+}
+</style>
