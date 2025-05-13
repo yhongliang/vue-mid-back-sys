@@ -2,6 +2,7 @@
     <div>
         <div class="navbar">
             <hamburger class="hamburger-container" />
+            <breadcrumb class="breadcrumb-container" />
             <div class="right-menu">
                 <!-- 用户信息 -->
                 <el-dropdown>
@@ -24,6 +25,7 @@
 import { useUserStore } from '@/stores/user'
 import { useRouter } from 'vue-router'
 import Hamburger from '@/layout/components/Hamburger/index.vue'
+import Breadcrumb from '@/layout/components/Breadcrumb/index.vue'
 const router = useRouter()
 
 const userStore = useUserStore()
@@ -51,6 +53,12 @@ const logout = () => {
         &:hover {
             background: rgba(0, 0, 0, 0.025);
         }
+    }
+
+    .breadcrumb-container {
+        height: 100%;
+        line-height: 53px;
+        float: left;
     }
 }
 </style>

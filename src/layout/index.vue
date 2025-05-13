@@ -8,12 +8,12 @@
             <!-- 主内容区 -->
             <el-container class="main-container">
                 <!-- 顶部导航栏 -->
-                <el-header style="text-align: right; font-size: 12px">
+                <el-header style="text-align: right; font-size: 12px; padding: 0;">
                     <navbar />
                 </el-header>
                 <el-main>
                     <!-- 面包屑 -->
-                    <breadcrumb />
+                    <!-- <breadcrumb /> -->
                     <!-- 内容渲染区 -->
                     <router-view v-slot="{ Component }">
                         <transition name="fade-transform" mode="out-in">
@@ -35,6 +35,12 @@ import Breadcrumb from './components/Breadcrumb/index.vue'
 <style lang="scss" scoped>
 .layout-container {
     height: 100vh;
+
+    // .main-container {
+    //     .el-main {
+    //         padding-top: 0;
+    //     }
+    // }
 }
 
 .fade-transform-enter-active,
