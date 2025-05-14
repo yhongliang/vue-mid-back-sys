@@ -33,7 +33,7 @@ const router = createRouter({
       children: [
         {
           path: 'system/User',
-          component: () => import('@/views/system/User.vue'),
+          component: () => import('@/views/system/user/index.vue'),
           meta: { title: '用户管理', icon: 'User' }
         },
         {

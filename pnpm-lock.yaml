@@ -17,6 +17,9 @@ dependencies:
   pinia:
     specifier: ^3.0.1
     version: 3.0.1(typescript@5.8.2)(vue@3.5.13)
+  splitpanes:
+    specifier: ^4.0.3
+    version: 4.0.3(vue@3.5.13)
   vue:
     specifier: ^3.5.13
     version: 3.5.13(typescript@5.8.2)
@@ -4527,6 +4530,14 @@ packages:
     dependencies:
       through: 2.3.8
     dev: true
+
+  /splitpanes@4.0.3(vue@3.5.13):
+    resolution: {integrity: sha512-S/f1CoH2JroOib7kzQtTQNtQCa7VzNQ2qKOO5HNj/5EVVcNkfz1eX/sH+X3XKdBdDLihEKDekVGwrLADd2oirA==}
+    peerDependencies:
+      vue: ^3.2.0
+    dependencies:
+      vue: 3.5.13(typescript@5.8.2)
+    dev: false
 
   /sshpk@1.18.0:
     resolution: {integrity: sha512-2p2KJZTSqQ/I3+HX42EpYOa2l3f8Erv8MWKsy2I9uf4wA7yFIkXRffYdsx86y6z4vHtV8u7g+pPlr8/4ouAxsQ==}

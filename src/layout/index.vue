@@ -12,8 +12,8 @@
                     <navbar />
                 </el-header>
                 <el-main>
-                    <!-- 面包屑 -->
-                    <!-- <breadcrumb /> -->
+                    <!-- 面包屑导航 -->
+                    <tags-view />
                     <!-- 内容渲染区 -->
                     <router-view v-slot="{ Component }">
                         <transition name="fade-transform" mode="out-in">
@@ -29,18 +29,18 @@
 <script setup lang="ts">
 import Sidebar from './components/Sidebar/index.vue'
 import Navbar from './components/Navbar/index.vue'
-import Breadcrumb from './components/Breadcrumb/index.vue'
+import TagsView from './components/TagsView/index.vue'
 </script>
 
 <style lang="scss" scoped>
 .layout-container {
     height: 100vh;
 
-    // .main-container {
-    //     .el-main {
-    //         padding-top: 0;
-    //     }
-    // }
+    .main-container {
+        .el-main {
+            padding: 0;
+        }
+    }
 }
 
 .fade-transform-enter-active,

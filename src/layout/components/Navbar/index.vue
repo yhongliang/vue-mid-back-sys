@@ -8,10 +8,14 @@
                 <el-dropdown>
                     <span class="el-dropdown-link">
                         <el-avatar :size="30" />
-                        <span>{{ userStore.userInfo }}</span>
+                        <!-- <span>{{ userStore.userInfo }}</span> -->
+                        <!-- <el-icon><caret-bottom /></el-icon> -->
                     </span>
                     <template #dropdown>
                         <el-dropdown-menu>
+                            <router-link to="/user/profile">
+                                <el-dropdown-item>个人中心</el-dropdown-item>
+                            </router-link>
                             <el-dropdown-item @click="logout">退出登录</el-dropdown-item>
                         </el-dropdown-menu>
                     </template>
@@ -59,6 +63,16 @@ const logout = () => {
         height: 100%;
         line-height: 53px;
         float: left;
+    }
+
+    .right-menu {
+        .el-dropdown {
+            padding: 10px 10px 0 0;
+
+            &:focus {
+                outline: none;
+            }
+        }
     }
 }
 </style>

@@ -16,6 +16,8 @@ export default defineConfig({
     vueJsx(),
     // vueDevTools(),
     AutoImport({
+      imports: ['vue'], // 自动导入 Vue 相关函数
+      dts: 'src/auto-imports.d.ts', // 生成类型声明文件
       resolvers: [ElementPlusResolver()],
     }),
     Components({
