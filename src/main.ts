@@ -12,9 +12,11 @@ import zhCn from 'element-plus/es/locale/lang/zh-cn'
 import '@/styles/reset.scss'
 import 'element-plus/dist/index.css'
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
+import { useDict } from '@/utils/dict'
 
 const app = createApp(App)
 
+app.config.globalProperties.useDict = useDict
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
     app.component(key, component)
 }
