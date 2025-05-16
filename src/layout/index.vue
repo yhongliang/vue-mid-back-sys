@@ -15,11 +15,7 @@
                     <!-- 面包屑导航 -->
                     <tags-view />
                     <!-- 内容渲染区 -->
-                    <router-view v-slot="{ Component }">
-                        <transition name="fade-transform" mode="out-in">
-                            <component :is="Component" />
-                        </transition>
-                    </router-view>
+                    <app-main />
                 </el-main>
             </el-container>
         </el-container>
@@ -30,6 +26,7 @@
 import Sidebar from './components/Sidebar/index.vue'
 import Navbar from './components/Navbar/index.vue'
 import TagsView from './components/TagsView/index.vue'
+import AppMain from './components/AppMain.vue'
 </script>
 
 <style lang="scss" scoped>
